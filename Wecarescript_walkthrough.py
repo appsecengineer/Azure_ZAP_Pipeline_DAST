@@ -1,11 +1,38 @@
 # coding: utf-8
+from RoboZap import *
 from selenium import webdriver
 from selenium.webdriver.common.proxy import *
+from selenium.webdriver.common.action_chains import ActionChains
 import time
 import sys
+from selenium.webdriver.common.keys import Keys
 from selenium.webdriver import Firefox, FirefoxProfile
+from selenium.webdriver.firefox.firefox_binary import FirefoxBinary
 from selenium.common.exceptions import ElementNotVisibleException,NoSuchElementException
+from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from random import *
+import shutil
+from RoboZapImportScanPolicy import *
+zap_handler = RoboZap('127.0.0.1:8090','8090')
+context_id = ''
+s = RoboZapImportScanPolicy('127.0.0.1:8090','8090')
+
+from selenium.webdriver.firefox.options import Options
+options=Options()
+options.headless=True
+
+def set_policy():
+    s.import_scan_policy()
+
+def run_zap_in_headless_mode():
+    try:
+        print("Initiate ZAP")
+        path = "/ZAP_2.7.0/"
+        zap_handler.start_headless_zap(path)
+    except Exception as e:
+        print(e)
 
 fp = FirefoxProfile()
 fp.set_preference("browser.helperApps.neverAsk.saveToDisk", "application/octet-stream")
@@ -15,28 +42,24 @@ fp.set_preference("browser.startup.page", "0")
 fp.set_preference("browser.startup.homepage", "about:blank")
 fp.set_preference("browser.safebrowsing.malware.enabled", "false")
 fp.set_preference("startup.homepage_welcome_url.additional", "about:blank")
+fp.set_preference("network.proxy.type", 1)
+fp.set_preference("network.proxy.http", 'localhost')
+fp.set_preference("network.proxy.http_port", 8090)
+fp.set_preference("network.proxy.ssl", 'localhost')
+fp.set_preference("network.proxy.ssl_port", 8090)
+fp.set_preference("network.proxy.no_proxies_on", "*.googleapis.com,*.google.com,*.gstatic.com,*.googleapis.com,*.mozilla.net,*.mozilla.com,ocsp.pki.goog")
 fp.update_preferences()
 
 def log_exception(e):
     exc_type, exc_value, exc_traceback = sys.exc_info()
-    print( "[ + ]  Line no :{0} Exception {1}".format(exc_traceback.tb_lineno,e))
+    print("[ + ]  Line no :{0} Exception {1}".format(exc_traceback.tb_lineno,e))
 
-
-def get_driver(proxy_host,proxy_port):
-    PROXY = '{0}:{1}'.format(proxy_host,proxy_port)
-    myproxy = Proxy({
-        'proxyType': ProxyType.MANUAL,
-        'httpProxy': PROXY,
-        'ftpProxy': PROXY,
-        'sslProxy': PROXY
-        # 'noProxy': ','.join(excluded_from_proxy)  # set this value as desired
-        })
-    driver = Firefox(fp,proxy=myproxy)    
-    print( "Initialized firefox driver")
+def get_driver():
+    driver = Firefox(fp,options=options)
+    print("Initialized firefox driver")
     driver.maximize_window()    
     driver.implicitly_wait(120)
     return driver
-
 
 def auth(driver,target):
     try:
@@ -185,19 +208,62 @@ def auth(driver,target):
 
 class Wecarescript_walkthrough(object):
 
-    def __init__(self, proxy_host = 'localhost', proxy_port = '8090', target = 'http://139.59.88.146'):
+    def __init__(self, proxy_host = 'localhost', proxy_port = '8090', target = 'http://134.209.146.136'):
         self.proxy_host = proxy_host
         self.proxy_port = proxy_port
         self.target = target
 
     def run_script(self):
         try:
-            # driver = get_driver(self.proxy_host,self.proxy_port)
-            driver = Firefox(fp)
+            driver = get_driver()
             driver.maximize_window()
             auth(driver,self.target)
         except BaseException as e:
             print("[ + ] Error !!!!!!!!!!!!",e)
 
+def context_zap_results():
+    try:
+        context_id = zap_handler.zap_define_context("CTF_CONTEXT","http://134.209.146.136")
+    except Exception as e:
+        print(e)
+
+def run_zap_active_scan():
+    try:
+        s = RoboZapImportScanPolicy('127.0.0.1:8090','8090')
+        scanId = zap_handler.zap_start_ascan(context_id,'http://134.209.146.136','Default Policy')
+        print('Start Active scan. Scan ID equals ' + scanId)
+        while (int(s.get_scan_status(scanId)) < 100):
+            print('Active Scan progress: ' + s.get_scan_status(scanId) + '%')
+            time.sleep(5)
+        print('Active Scan completed')
+        export_zap_report_of_scan()
+        get_html_report()
+    except Exception as e:
+        print(e)
+
+def export_zap_report_of_scan():
+    try:
+        zap_handler.zap_export_report("/zap_results/CTF_walkthrough_zap_scan_result.xml","xml","Argus_walkthrough_zap_scan_result.xml","Vishnuwe45")
+        zap_handler.zap_export_report("/zap_results/CTF_walkthrough_zap_scan_result.json","json","Argus_walkthrough_zap_scan_result.html","Vishnuwe45")
+    except Exception as e:
+        print(e)
+
+def get_html_report():
+    try:
+        s = RoboZapImportScanPolicy('127.0.0.1:8090','8090')
+        s.import_html_report("CTF_walkthrough_zap_scan_result.html")
+    except Exception as e:
+        print(e)
+
+def kill_zap():
+    try:
+        zap_handler.shutdown()
+    except Exception as e:
+        print(e)
+
+run_zap_in_headless_mode()
+# set_policy()
 s = Wecarescript_walkthrough()
 s.run_script()
+context_zap_results()
+run_zap_active_scan()
