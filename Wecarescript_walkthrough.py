@@ -243,8 +243,8 @@ def run_zap_active_scan():
 
 def export_zap_report_of_scan():
     try:
-        zap_handler.zap_export_report("/zap_results/CTF_walkthrough_zap_scan_result.xml","xml","Argus_walkthrough_zap_scan_result.xml","Vishnuwe45")
-        zap_handler.zap_export_report("/zap_results/CTF_walkthrough_zap_scan_result.json","json","Argus_walkthrough_zap_scan_result.html","Vishnuwe45")
+        zap_handler.zap_export_report("CTF_walkthrough_zap_scan_result.xml","xml","CTF_walkthrough_zap_scan_result.xml","Vishnuwe45")
+        zap_handler.zap_export_report("CTF_walkthrough_zap_scan_result.json","json","CTF_walkthrough_zap_scan_result.html","Vishnuwe45")
     except Exception as e:
         print(e)
 
