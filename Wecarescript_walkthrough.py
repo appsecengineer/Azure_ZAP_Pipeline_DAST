@@ -100,37 +100,37 @@ def auth(driver,target):
             driver.implicitly_wait(5)
             driver.find_element_by_xpath('/html/body/div[2]/div/div/form/div[4]/div[1]/div/div/select/option[3]').click()
             driver.implicitly_wait(5)
-            # Select Health Plan
-            driver.find_element_by_xpath('/html/body/div[2]/div/div/form/div[4]/div[1]/div/div/select').click()
-            driver.implicitly_wait(10)
-            driver.find_element_by_xpath('/html/body/div[2]/div/div/form/div[4]/div[1]/div/div/select/option[2]').click()
-            driver.implicitly_wait(7)
-            # Appointment reason
-            driver.find_element_by_xpath('/html/body/div[2]/div/div/form/div[6]/div[1]/div/div/textarea').clear()
-            driver.find_element_by_xpath('/html/body/div[2]/div/div/form/div[6]/div[1]/div/div/textarea').send_keys('Selenium Test')
-            # Email
-            driver.find_element_by_xpath('/html/body/div[2]/div/div/form/div[1]/div[2]/div/div/input').clear()
-            driver.find_element_by_xpath('/html/body/div[2]/div/div/form/div[1]/div[2]/div/div/input').send_keys('selenium@test.com')
-            driver.implicitly_wait(5)
-            # Date of Birth
-            driver.find_element_by_xpath('/html/body/div[2]/div/div/form/div[2]/div[2]/div/div/input').clear()
-            driver.find_element_by_xpath('/html/body/div[2]/div/div/form/div[2]/div[2]/div/div/input').send_keys('1989-01-04')
-            driver.implicitly_wait(5)
-            # Address
-            driver.find_element_by_xpath('/html/body/div[2]/div/div/form/div[3]/div[2]/div/div/textarea').clear()
-            driver.find_element_by_xpath('/html/body/div[2]/div/div/form/div[3]/div[2]/div/div/textarea').send_keys('Selenium Test')
-            driver.implicitly_wait(5)
-            # Appointment Date
-            driver.find_element_by_xpath('/html/body/div[2]/div/div/form/div[5]/div[2]/div/div/input').clear()
-            driver.find_element_by_xpath('/html/body/div[2]/div/div/form/div[5]/div[2]/div/div/input').send_keys('2021/01/04')
-            driver.implicitly_wait(5)
-            # Submit
-            driver.find_element_by_xpath('/html/body/div[2]/div/div/form/div[7]/div/div/input').click()
-            driver.implicitly_wait(5)
-            time.sleep(10)
-            driver.get('{0}/contact_us/'.format(target))
-            print( '[+] ' + driver.current_url)
-            time.sleep(10)
+#             # Select Health Plan
+#             driver.find_element_by_xpath('/html/body/div[2]/div/div/form/div[4]/div[1]/div/div/select').click()
+#             driver.implicitly_wait(10)
+#             driver.find_element_by_xpath('/html/body/div[2]/div/div/form/div[4]/div[1]/div/div/select/option[2]').click()
+#             driver.implicitly_wait(7)
+#             # Appointment reason
+#             driver.find_element_by_xpath('/html/body/div[2]/div/div/form/div[6]/div[1]/div/div/textarea').clear()
+#             driver.find_element_by_xpath('/html/body/div[2]/div/div/form/div[6]/div[1]/div/div/textarea').send_keys('Selenium Test')
+#             # Email
+#             driver.find_element_by_xpath('/html/body/div[2]/div/div/form/div[1]/div[2]/div/div/input').clear()
+#             driver.find_element_by_xpath('/html/body/div[2]/div/div/form/div[1]/div[2]/div/div/input').send_keys('selenium@test.com')
+#             driver.implicitly_wait(5)
+#             # Date of Birth
+#             driver.find_element_by_xpath('/html/body/div[2]/div/div/form/div[2]/div[2]/div/div/input').clear()
+#             driver.find_element_by_xpath('/html/body/div[2]/div/div/form/div[2]/div[2]/div/div/input').send_keys('1989-01-04')
+#             driver.implicitly_wait(5)
+#             # Address
+#             driver.find_element_by_xpath('/html/body/div[2]/div/div/form/div[3]/div[2]/div/div/textarea').clear()
+#             driver.find_element_by_xpath('/html/body/div[2]/div/div/form/div[3]/div[2]/div/div/textarea').send_keys('Selenium Test')
+#             driver.implicitly_wait(5)
+#             # Appointment Date
+#             driver.find_element_by_xpath('/html/body/div[2]/div/div/form/div[5]/div[2]/div/div/input').clear()
+#             driver.find_element_by_xpath('/html/body/div[2]/div/div/form/div[5]/div[2]/div/div/input').send_keys('2021/01/04')
+#             driver.implicitly_wait(5)
+#             # Submit
+#             driver.find_element_by_xpath('/html/body/div[2]/div/div/form/div[7]/div/div/input').click()
+#             driver.implicitly_wait(5)
+#             time.sleep(10)
+#             driver.get('{0}/contact_us/'.format(target))
+#             print( '[+] ' + driver.current_url)
+#             time.sleep(10)
         except BaseException as e:
             pass
 
