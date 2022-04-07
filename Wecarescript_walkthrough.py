@@ -237,7 +237,7 @@ def run_zap_active_scan():
             time.sleep(5)
         print('Active Scan completed')
         export_zap_report_of_scan()
-        get_html_report()
+        #get_html_report()
     except Exception as e:
         print(e)
 
