@@ -691,8 +691,8 @@
     "spider":{
         "application_login":{
             "mode":"prompt",
-            "password":"",
-            "username":""
+            "password":"secdevops",
+            "username":"bruce.banner@we45.com"
         },
         "crawler":{
             "check_robots_text":true,
