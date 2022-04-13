@@ -1,13 +1,13 @@
 from RoboBurp2 import *
 import time
-url_list = "http://144.126.218.149:9000/"
+url_list = "http://134.209.146.136/"
 burp_handler = RoboBurp2(url_list)
 scanId = ''
 
 def run_burp_in_headless_mode():
     try:
         print("Initiate Burp")
-        path = "burpsuite_pro_v2.0.11beta.jar"
+        path = "/burpsuite_pro_v2.0.11beta.jar"
         user_config = "user_options.json"
         project_config = "project.json"
         burp_handler.start_headless_burpsuite(path,user_config=user_config,project_config=project_config)
