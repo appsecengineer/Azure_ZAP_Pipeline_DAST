@@ -1,0 +1,13 @@
+#!/usr/bin/expect
+
+set licensefile [open "license.txt"]
+set license [ read $licensefile ]
+close $licensefile
+
+spawn java -Djava.awt.headless=true -jar burpsuite_pro_v2.0.11beta.jar
+
+expect "*Do you accept the license agreement*?" { send -- "y\r" }
+expect "*paste your license key below*" { send -- "$license\r" }
+expect "*Enter preferred activation method*" { send -- "o\r" }
+
+expect eof
