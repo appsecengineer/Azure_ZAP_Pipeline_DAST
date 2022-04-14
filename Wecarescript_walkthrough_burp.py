@@ -64,9 +64,9 @@ fp.set_preference("browser.safebrowsing.malware.enabled", "false")
 fp.set_preference("startup.homepage_welcome_url.additional", "about:blank")
 fp.set_preference("network.proxy.type", 1)
 fp.set_preference("network.proxy.http", 'localhost')
-fp.set_preference("network.proxy.http_port", 8080)
+fp.set_preference("network.proxy.http_port", 8090)
 fp.set_preference("network.proxy.ssl", 'localhost')
-fp.set_preference("network.proxy.ssl_port", 8080)
+fp.set_preference("network.proxy.ssl_port", 8090)
 fp.set_preference("network.proxy.no_proxies_on", "*.googleapis.com,*.google.com,*.gstatic.com,*.googleapis.com,*.mozilla.net,*.mozilla.com,ocsp.pki.goog")
 fp.update_preferences()
 
@@ -225,7 +225,7 @@ def auth(driver,target):
 
 class Wecarescript_walkthrough_burp(object):
 
-    def __init__(self, proxy_host = 'localhost', proxy_port = '8080', target = 'http://134.209.146.136/'):
+    def __init__(self, proxy_host = 'localhost', proxy_port = '8090', target = 'http://134.209.146.136/'):
         self.proxy_host = proxy_host
         self.proxy_port = proxy_port
         self.target = target
