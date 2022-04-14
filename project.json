@@ -720,6 +720,18 @@
             "param_auto_fill_rules":[
                 {
                     "enabled":true,
+                    "field_name":"username",
+                    "field_value":"bruce.banner@we45.com",
+                    "match_type":"regex"
+                },
+                {
+                    "enabled":true,
+                    "field_name":"password",
+                    "field_value":"secdevops",
+                    "match_type":"regex"
+                },
+                {
+                    "enabled":true,
                     "field_name":"mail",
                     "field_value":"winter@example.com",
                     "match_type":"regex"
