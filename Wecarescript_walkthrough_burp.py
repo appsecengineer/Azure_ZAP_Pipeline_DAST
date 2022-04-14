@@ -1,8 +1,7 @@
 # coding: utf-8
 from RoboBurp2 import *
 import time
-url_list = "http://134.209.146.136/"
-burp_handler = RoboBurp2(url_list)
+url_list = ["http://134.209.146.136/"]
 scanId = ''
 
 def run_burp_in_headless_mode():
@@ -18,6 +17,8 @@ def run_burp_in_headless_mode():
 
 def run_burp_active_scan():
     try:
+        print(url_list)
+        burp_handler = RoboBurp2(url_list)
         auth_dict = {"username": "bruce.banner@we45.com", "password": "secdevops"}
         #scanID = burp_handler.initiate_crawl_and_scan_against_target(auth_logins=auth_dict,config_name="Audit coverage - thorough")
         scanID = burp_handler.initiate_scan_against_target(config_name="Audit coverage - thorough")
@@ -94,8 +95,9 @@ def auth(driver,target):
         driver.implicitly_wait(5)
         # Clicks on 'About'
         try:
-            driver.get('{0}/about'.format(target))
+            driver.get('{0}/about/'.format(target))
             print('[+] ' + driver.current_url)
+            url_list.append(driver.current_url)
             driver.get('{0}/appointment/add'.format(target))
             print('[+] ' + driver.current_url)
             driver.implicitly_wait(5)
@@ -150,6 +152,7 @@ def auth(driver,target):
             time.sleep(10)
             driver.get('{0}/contact_us/'.format(target))
             print( '[+] ' + driver.current_url)
+            url_list.append(driver.current_url)
             time.sleep(10)
         except BaseException as e:
             pass
@@ -157,6 +160,7 @@ def auth(driver,target):
         try:
             driver.get('{0}/login/'.format(target))
             print('[+] ' + driver.current_url)
+            url_list.append(driver.current_url)
             time.sleep(10)
             driver.find_element_by_xpath('/html/body/div/div/section/form/div[1]/input').clear()
             driver.find_element_by_xpath('/html/body/div/div/section/form/div[1]/input').send_keys('bruce.banner@we45.com')
@@ -165,21 +169,27 @@ def auth(driver,target):
             driver.find_element_by_xpath('/html/body/div/div/section/form/div[3]/button').click()
             time.sleep(10)
             print('[+] ' + driver.current_url)
+            url_list.append(driver.current_url)
             driver.implicitly_wait(10)
             time.sleep(10)
             print('[+] ' + driver.current_url)
+            url_list.append(driver.current_url)
             driver.implicitly_wait(10)
             time.sleep(10)
             print('[+] ' + driver.current_url)
+            url_list.append(driver.current_url)
             driver.get('{0}/technicians/'.format(target))
             time.sleep(10)
             print('[+] ' + driver.current_url)
+            url_list.append(driver.current_url)
             driver.get('{0}/appointment/plan'.format(target))
             time.sleep(10)
             print('[+] ' + driver.current_url)
+            url_list.append(driver.current_url)
             driver.get('{0}/appointment/doctor'.format(target))
             time.sleep(10)
             print('[+] ' + driver.current_url)
+            url_list.append(driver.current_url)
             driver.get('{0}/secure_tests/'.format(target))
             time.sleep(10)
             # Sends keys and clicks on 'Search'
@@ -189,6 +199,7 @@ def auth(driver,target):
             driver.find_element_by_xpath('/html/body/div[2]/div/div[3]/form/div/input[2]').click()
             driver.implicitly_wait(5)
             print('[+] ' + driver.current_url)
+            url_list.append(driver.current_url)
             driver.get('{0}/tests/'.format(target))
             time.sleep(10)
             # Sends keys and clicks on 'Search'
@@ -198,9 +209,11 @@ def auth(driver,target):
             driver.find_element_by_xpath('/html/body/div[2]/div/div[3]/form/div/input[2]').click()
             driver.implicitly_wait(5)
             print('[+] ' + driver.current_url)
+            url_list.append(driver.current_url)
             driver.get('{0}/plans/'.format(target))
             time.sleep(10)
             print('[+] ' + driver.current_url)
+            url_list.append(driver.current_url)
             driver.get('{0}/password_change'.format(target))
             time.sleep(10)
             driver.implicitly_wait(5)
@@ -209,6 +222,7 @@ def auth(driver,target):
             driver.find_element_by_xpath('/html/body/div[2]/div/div[3]/div/div[2]/form/div[3]/button').click()
             driver.implicitly_wait(5)
             print('[+] ' + driver.current_url)
+            url_list.append(driver.current_url)
             driver.get('{0}/password_change_secure'.format(target))
             time.sleep(10)
             driver.implicitly_wait(5)
@@ -217,6 +231,7 @@ def auth(driver,target):
             driver.find_element_by_xpath('/html/body/div[2]/div/div[3]/div/div[2]/form/div[3]/button').click()
             driver.implicitly_wait(5)
             print('[+] ' + driver.current_url)
+            url_list.append(driver.current_url)
         except BaseException as e:
             print(e)
     except BaseException as e:
