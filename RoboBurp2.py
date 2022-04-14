@@ -95,10 +95,8 @@ class RoboBurp2(object):
         if scan_request.status_code == 201:
             scan_id = scan_request.headers.get('Location')
             self.scan_id = scan_id
-            logger.info("Scan ID for the current task has been set to: {}".format(scan_id))
             return self.scan_id
         else:
-            logger.error(scan_request.content)
             raise Exception(scan_request.content)
 
     def make_status_request(self, scan_id):
