@@ -65,12 +65,12 @@ fp.set_preference("browser.startup.page", "0")
 fp.set_preference("browser.startup.homepage", "about:blank")
 fp.set_preference("browser.safebrowsing.malware.enabled", "false")
 fp.set_preference("startup.homepage_welcome_url.additional", "about:blank")
-fp.set_preference("network.proxy.type", 1)
-fp.set_preference("network.proxy.http", 'localhost')
-fp.set_preference("network.proxy.http_port", 8090)
-fp.set_preference("network.proxy.ssl", 'localhost')
-fp.set_preference("network.proxy.ssl_port", 8090)
-fp.set_preference("network.proxy.no_proxies_on", "*.googleapis.com,*.google.com,*.gstatic.com,*.googleapis.com,*.mozilla.net,*.mozilla.com,ocsp.pki.goog")
+#fp.set_preference("network.proxy.type", 1)
+#fp.set_preference("network.proxy.http", 'localhost')
+#fp.set_preference("network.proxy.http_port", 8090)
+#fp.set_preference("network.proxy.ssl", 'localhost')
+#fp.set_preference("network.proxy.ssl_port", 8090)
+#fp.set_preference("network.proxy.no_proxies_on", "*.googleapis.com,*.google.com,*.gstatic.com,*.googleapis.com,*.mozilla.net,*.mozilla.com,ocsp.pki.goog")
 fp.update_preferences()
 
 def log_exception(e):
@@ -256,7 +256,7 @@ class Wecarescript_walkthrough_burp(object):
             print("[ + ] Error !!!!!!!!!!!!",e)
 
 
-run_burp_in_headless_mode()
 s = Wecarescript_walkthrough_burp()
 s.run_script()
+run_burp_in_headless_mode()
 run_burp_active_scan()
