@@ -225,7 +225,7 @@ def auth(driver,target):
 
 class Wecarescript_walkthrough_burp(object):
 
-    def __init__(self, proxy_host = 'localhost', proxy_port = '8090', target = 'http://134.209.146.136/'):
+    def __init__(self, proxy_host = 'localhost', proxy_port = '8090', target = 'http://134.209.146.136'):
         self.proxy_host = proxy_host
         self.proxy_port = proxy_port
         self.target = target
