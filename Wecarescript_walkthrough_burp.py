@@ -1,13 +1,13 @@
 # coding: utf-8
 from RoboBurp2 import *
 import time
-url_list = "http://134.209.146.136/"
+url_list = ["http://134.209.146.136/"]
 scanId = ''
-burp_handler = RoboBurp2(url_list)
+
 
 def run_burp_in_headless_mode():
     try:
-        
+        burp_handler = RoboBurp2(url_list)
         print("Initiate Burp")
         path = "/burpsuite_pro_v2.0.11beta.jar"
         user_config = "user_options.json"
@@ -19,6 +19,7 @@ def run_burp_in_headless_mode():
 
 def run_burp_active_scan():
     try:
+        burp_handler = RoboBurp2(url_list)
         print(url_list)
         auth_dict = {"username": "bruce.banner@we45.com", "password": "secdevops"}
         #scanID = burp_handler.initiate_crawl_and_scan_against_target(auth_logins=auth_dict,config_name="Audit coverage - thorough")
@@ -34,6 +35,7 @@ def run_burp_active_scan():
 
 def kill_burp():
     try:
+        burp_handler = RoboBurp2(url_list)
         burp_handler.stop_burpsuite()
     except Exception as e:
         print(e)
@@ -64,11 +66,11 @@ fp.set_preference("browser.startup.page", "0")
 fp.set_preference("browser.startup.homepage", "about:blank")
 fp.set_preference("browser.safebrowsing.malware.enabled", "false")
 fp.set_preference("startup.homepage_welcome_url.additional", "about:blank")
-fp.set_preference("network.proxy.type", 1)
-fp.set_preference("network.proxy.http", 'localhost')
-fp.set_preference("network.proxy.http_port", 8090)
-fp.set_preference("network.proxy.ssl", 'localhost')
-fp.set_preference("network.proxy.ssl_port", 8090)
+#fp.set_preference("network.proxy.type", 1)
+#fp.set_preference("network.proxy.http", 'localhost')
+#fp.set_preference("network.proxy.http_port", 8090)
+#fp.set_preference("network.proxy.ssl", 'localhost')
+#fp.set_preference("network.proxy.ssl_port", 8090)
 fp.set_preference("network.proxy.no_proxies_on", "*.googleapis.com,*.google.com,*.gstatic.com,*.googleapis.com,*.mozilla.net,*.mozilla.com,ocsp.pki.goog")
 fp.update_preferences()
 
@@ -98,8 +100,10 @@ def auth(driver,target):
         try:
             driver.get('{0}/about/'.format(target))
             print('[+] ' + driver.current_url)
+            url_list.append(str(driver.current_url))
             driver.get('{0}/appointment/add'.format(target))
             print('[+] ' + driver.current_url)
+            url_list.append(str(driver.current_url))
             driver.implicitly_wait(5)
             time.sleep(10)
             # Name
@@ -173,15 +177,19 @@ def auth(driver,target):
             driver.implicitly_wait(10)
             time.sleep(10)
             print('[+] ' + driver.current_url)
+            url_list.append(str(driver.current_url))
             driver.get('{0}/technicians/'.format(target))
             time.sleep(10)
             print('[+] ' + driver.current_url)
+            url_list.append(str(driver.current_url))
             driver.get('{0}/appointment/plan'.format(target))
             time.sleep(10)
             print('[+] ' + driver.current_url)
+            url_list.append(str(driver.current_url))
             driver.get('{0}/appointment/doctor'.format(target))
             time.sleep(10)
             print('[+] ' + driver.current_url)
+            url_list.append(str(driver.current_url))
             driver.get('{0}/secure_tests/'.format(target))
             time.sleep(10)
             # Sends keys and clicks on 'Search'
@@ -191,6 +199,7 @@ def auth(driver,target):
             driver.find_element_by_xpath('/html/body/div[2]/div/div[3]/form/div/input[2]').click()
             driver.implicitly_wait(5)
             print('[+] ' + driver.current_url)
+            url_list.append(str(driver.current_url))
             driver.get('{0}/tests/'.format(target))
             time.sleep(10)
             # Sends keys and clicks on 'Search'
@@ -200,9 +209,11 @@ def auth(driver,target):
             driver.find_element_by_xpath('/html/body/div[2]/div/div[3]/form/div/input[2]').click()
             driver.implicitly_wait(5)
             print('[+] ' + driver.current_url)
+            url_list.append(str(driver.current_url))
             driver.get('{0}/plans/'.format(target))
             time.sleep(10)
             print('[+] ' + driver.current_url)
+            url_list.append(str(driver.current_url))
             driver.get('{0}/password_change'.format(target))
             time.sleep(10)
             driver.implicitly_wait(5)
@@ -211,6 +222,7 @@ def auth(driver,target):
             driver.find_element_by_xpath('/html/body/div[2]/div/div[3]/div/div[2]/form/div[3]/button').click()
             driver.implicitly_wait(5)
             print('[+] ' + driver.current_url)
+            url_list.append(str(driver.current_url))
             driver.get('{0}/password_change_secure'.format(target))
             time.sleep(10)
             driver.implicitly_wait(5)
@@ -219,6 +231,7 @@ def auth(driver,target):
             driver.find_element_by_xpath('/html/body/div[2]/div/div[3]/div/div[2]/form/div[3]/button').click()
             driver.implicitly_wait(5)
             print('[+] ' + driver.current_url)
+            url_list.append(str(driver.current_url))
         except BaseException as e:
             print(e)
     except BaseException as e:
@@ -240,7 +253,8 @@ class Wecarescript_walkthrough_burp(object):
         except BaseException as e:
             print("[ + ] Error !!!!!!!!!!!!",e)
 
-run_burp_in_headless_mode()
+
 s = Wecarescript_walkthrough_burp()
 s.run_script()
+run_burp_in_headless_mode()
 run_burp_active_scan()
