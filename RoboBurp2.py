@@ -83,24 +83,22 @@ class RoboBurp2(object):
         '''
         This is very similar to crawl and scan, except that this mode assumes that you have already crawled the app
         Consider only using "Audit" based NamedConfigurations to scan (audit) only
-
         :param config_name: optional, where NamedConfiguration for Audit should be provided
         :return:
         '''
         request_data = {}
         if config_name and isinstance(config_name,str):
-            request_data['scan_configurations'] = [{"name":config_name,"type":"NamedConfiguration"}]
+            request_data['scan_configurations'] = [{'name': config_name,'type':'NamedConfiguration'}]
 
-        auth_logins = {"username":"madhu.kumar@we45.com","password":"upgrad123"}
-        request_data['application_logins'] = [auth_logins]
-        #request_data['urls'] = [self.target]
-        request_data['urls'] = get_urls()
+        request_data['urls'] = [self.target]
         scan_request = requests.post(self.api_url + "scan", json=request_data)
         if scan_request.status_code == 201:
             scan_id = scan_request.headers.get('Location')
             self.scan_id = scan_id
+            logger.info("Scan ID for the current task has been set to: {}".format(scan_id))
             return self.scan_id
         else:
+            logger.error(scan_request.content)
             raise Exception(scan_request.content)
 
     def make_status_request(self, scan_id):
