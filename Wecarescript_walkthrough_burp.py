@@ -163,6 +163,7 @@ def auth(driver,target):
         try:
             driver.get('{0}/login/'.format(target))
             print('[+] ' + driver.current_url)
+            url_list.append(str(driver.current_url))
             time.sleep(10)
             driver.find_element_by_xpath('/html/body/div/div/section/form/div[1]/input').clear()
             driver.find_element_by_xpath('/html/body/div/div/section/form/div[1]/input').send_keys('bruce.banner@we45.com')
@@ -222,7 +223,6 @@ def auth(driver,target):
             driver.find_element_by_xpath('/html/body/div[2]/div/div[3]/div/div[2]/form/div[3]/button').click()
             driver.implicitly_wait(5)
             print('[+] ' + driver.current_url)
-            url_list.append(str(driver.current_url))
             driver.get('{0}/password_change_secure'.format(target))
             time.sleep(10)
             driver.implicitly_wait(5)
@@ -231,7 +231,6 @@ def auth(driver,target):
             driver.find_element_by_xpath('/html/body/div[2]/div/div[3]/div/div[2]/form/div[3]/button').click()
             driver.implicitly_wait(5)
             print('[+] ' + driver.current_url)
-            url_list.append(str(driver.current_url))
         except BaseException as e:
             print(e)
     except BaseException as e:
