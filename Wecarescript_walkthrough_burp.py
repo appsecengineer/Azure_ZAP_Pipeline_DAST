@@ -101,10 +101,10 @@ def auth(driver,target):
         try:
             driver.get('{0}/about/'.format(target))
             print('[+] ' + driver.current_url)
-            url_list.append(str(driver.current_url))
+            #url_list.append(str(driver.current_url))
             driver.get('{0}/appointment/add'.format(target))
             print('[+] ' + driver.current_url)
-            url_list.append(str(driver.current_url))
+            #url_list.append(str(driver.current_url))
             driver.implicitly_wait(5)
             time.sleep(10)
             # Name
@@ -164,7 +164,7 @@ def auth(driver,target):
         try:
             driver.get('{0}/login/'.format(target))
             print('[+] ' + driver.current_url)
-            url_list.append(str(driver.current_url))
+            #url_list.append(str(driver.current_url))
             time.sleep(10)
             driver.find_element_by_xpath('/html/body/div/div/section/form/div[1]/input').clear()
             driver.find_element_by_xpath('/html/body/div/div/section/form/div[1]/input').send_keys('bruce.banner@we45.com')
@@ -179,19 +179,19 @@ def auth(driver,target):
             driver.implicitly_wait(10)
             time.sleep(10)
             print('[+] ' + driver.current_url)
-            url_list.append(str(driver.current_url))
+            #url_list.append(str(driver.current_url))
             driver.get('{0}/technicians/'.format(target))
             time.sleep(10)
             print('[+] ' + driver.current_url)
-            url_list.append(str(driver.current_url))
+            #url_list.append(str(driver.current_url))
             driver.get('{0}/appointment/plan'.format(target))
             time.sleep(10)
             print('[+] ' + driver.current_url)
-            url_list.append(str(driver.current_url))
+            #url_list.append(str(driver.current_url))
             driver.get('{0}/appointment/doctor'.format(target))
             time.sleep(10)
             print('[+] ' + driver.current_url)
-            url_list.append(str(driver.current_url))
+            #url_list.append(str(driver.current_url))
             driver.get('{0}/secure_tests/'.format(target))
             time.sleep(10)
             # Sends keys and clicks on 'Search'
@@ -201,7 +201,7 @@ def auth(driver,target):
             driver.find_element_by_xpath('/html/body/div[2]/div/div[3]/form/div/input[2]').click()
             driver.implicitly_wait(5)
             print('[+] ' + driver.current_url)
-            url_list.append(str(driver.current_url))
+            #url_list.append(str(driver.current_url))
             driver.get('{0}/tests/'.format(target))
             time.sleep(10)
             # Sends keys and clicks on 'Search'
@@ -211,11 +211,11 @@ def auth(driver,target):
             driver.find_element_by_xpath('/html/body/div[2]/div/div[3]/form/div/input[2]').click()
             driver.implicitly_wait(5)
             print('[+] ' + driver.current_url)
-            url_list.append(str(driver.current_url))
+            #url_list.append(str(driver.current_url))
             driver.get('{0}/plans/'.format(target))
             time.sleep(10)
             print('[+] ' + driver.current_url)
-            url_list.append(str(driver.current_url))
+            #url_list.append(str(driver.current_url))
             driver.get('{0}/password_change'.format(target))
             time.sleep(10)
             driver.implicitly_wait(5)
@@ -232,6 +232,7 @@ def auth(driver,target):
             driver.find_element_by_xpath('/html/body/div[2]/div/div[3]/div/div[2]/form/div[3]/button').click()
             driver.implicitly_wait(5)
             print('[+] ' + driver.current_url)
+            #url_list.append(str(driver.current_url))
         except BaseException as e:
             print(e)
     except BaseException as e:
@@ -240,7 +241,7 @@ def auth(driver,target):
 
 class Wecarescript_walkthrough_burp(object):
 
-    def __init__(self, proxy_host = 'localhost', proxy_port = '8090', target = 'http://134.209.146.136'):
+    def __init__(self, proxy_host = 'localhost', proxy_port = '8080', target = 'http://134.209.146.136'):
         self.proxy_host = proxy_host
         self.proxy_port = proxy_port
         self.target = target
