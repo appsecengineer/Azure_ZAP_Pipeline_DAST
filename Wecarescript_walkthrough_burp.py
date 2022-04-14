@@ -13,6 +13,7 @@ def run_burp_in_headless_mode():
         user_config = "user_options.json"
         project_config = "project.json"
         burp_handler.start_headless_burpsuite(path,user_config=user_config,project_config=project_config)
+        #burp_handler.start_headless_burpsuite(path,user_config=user_config)
         sleep(60)
     except Exception as e:
         print(e)
