@@ -1,3 +1,4 @@
+# coding: utf-8
 from RoboBurp2 import *
 import time
 url_list = "http://134.209.146.136/"
