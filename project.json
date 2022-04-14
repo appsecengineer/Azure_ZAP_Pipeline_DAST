@@ -720,7 +720,7 @@
             "param_auto_fill_rules":[
                 {
                     "enabled":true,
-                    "field_name":"username",
+                    "field_name":"email_id",
                     "field_value":"bruce.banner@we45.com",
                     "match_type":"regex"
                 },
