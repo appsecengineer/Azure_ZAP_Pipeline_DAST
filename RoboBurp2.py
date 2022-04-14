@@ -17,8 +17,9 @@ class RoboBurp2(object):
         self.api_url = api_url
         self.target = target
         self.scan_id = 0
-        if not str(self.target).endswith('/'):
-            raise Exception("Target must end with a slash for Burp to use it")
+        for t in self.target:
+            if not str(t).endswith('/'):
+                raise Exception("Target must end with a slash for Burp to use it")
 
     def start_burpsuite(self, burp_path, user_config=None,project_config=None):
         '''
@@ -69,7 +70,7 @@ class RoboBurp2(object):
         if config_name and isinstance(config_name,str):
             request_data['scan_configurations'] = [{'name': config_name,"type":"NamedConfiguration"}]
 
-        request_data['urls'] = [self.target]
+        request_data['urls'] = self.target
 
         scan_request = requests.post(self.api_url + "/scan", json=request_data)
         if scan_request.status_code == 201:
@@ -90,7 +91,7 @@ class RoboBurp2(object):
         if config_name and isinstance(config_name,str):
             request_data['scan_configurations'] = [{'name': config_name,'type':'NamedConfiguration'}]
 
-        request_data['urls'] = [self.target]
+        request_data['urls'] = self.target
         scan_request = requests.post(self.api_url + "scan", json=request_data)
         if scan_request.status_code == 201:
             scan_id = scan_request.headers.get('Location')
