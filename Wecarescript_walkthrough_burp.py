@@ -6,6 +6,7 @@ scanId = ''
 
 def run_burp_in_headless_mode():
     try:
+        burp_handler = RoboBurp2(url_list)
         print("Initiate Burp")
         path = "/burpsuite_pro_v2.0.11beta.jar"
         user_config = "user_options.json"
@@ -33,6 +34,7 @@ def run_burp_active_scan():
 
 def kill_burp():
     try:
+        burp_handler = RoboBurp2(url_list)
         burp_handler.stop_burpsuite()
     except Exception as e:
         print(e)
