@@ -18,8 +18,8 @@ def run_burp_in_headless_mode():
 def run_burp_active_scan():
     try:
         auth_dict = {"username": "bruce.banner@we45.com", "password": "secdevops"}
-        scanID = burp_handler.initiate_crawl_and_scan_against_target(auth_logins=auth_dict,config_name="Audit coverage - thorough")
-        #scanID = burp_handler.initiate_scan_against_target(config_name="Crawl limit - 60 minutes")
+        #scanID = burp_handler.initiate_crawl_and_scan_against_target(auth_logins=auth_dict,config_name="Audit coverage - thorough")
+        scanID = burp_handler.initiate_scan_against_target(config_name="Audit coverage - thorough")
         print('Start Active scan. Scan ID equals ' + scanID)
         while (burp_handler.get_burp_scan_status_for_id(scanID).get("scan_status") != "succeeded"):
             print('Active Scan progress: ' + burp_handler.get_burp_scan_status_for_id(scanID).get("scan_status"))
