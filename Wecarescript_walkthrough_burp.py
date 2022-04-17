@@ -7,7 +7,6 @@ scanId = ''
 
 def run_burp_in_headless_mode():
     try:
-        url_list = list(dict.fromkeys(url_list))
         burp_handler = RoboBurp2(url_list)
         print("Initiate Burp")
         path = "/burpsuite_pro_v2.0.11beta.jar"
@@ -21,7 +20,6 @@ def run_burp_in_headless_mode():
 
 def run_burp_active_scan():
     try:
-        url_list = list(dict.fromkeys(url_list))
         burp_handler = RoboBurp2(url_list)
         print(url_list)
         auth_dict = {"username": "betty.ross@we45.com", "password": "secdevops"}
@@ -147,7 +145,6 @@ def run_burp_active_scan():
 
 def kill_burp():
     try:
-        url_list = list(dict.fromkeys(url_list))
         burp_handler = RoboBurp2(url_list)
         burp_handler.stop_burpsuite()
     except Exception as e:
@@ -345,6 +342,7 @@ def auth(driver,target):
             driver.implicitly_wait(5)
             print('[+] ' + driver.current_url)
             url_list.append(str(driver.current_url))
+            url_list = list(dict.fromkeys(url_list))
         except BaseException as e:
             print(e)
     except BaseException as e:
