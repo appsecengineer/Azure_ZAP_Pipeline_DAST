@@ -73,6 +73,8 @@ class RoboBurp2(object):
         request_data['urls'] = self.target
         
         request_data['application_logins'] = [{'script':auth_logins,"label":"ctf2","type":"RecordedLogin"}]
+        
+        print(request_data)
 
         scan_request = requests.post(self.api_url + "/scan", json=request_data)
         if scan_request.status_code == 201:
