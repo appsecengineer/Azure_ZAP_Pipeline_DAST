@@ -23,9 +23,117 @@ def run_burp_active_scan():
         burp_handler = RoboBurp2(url_list)
         print(url_list)
         auth_dict = {"username": "bruce.banner@we45.com", "password": "secdevops"}
-        auth_sequence = ""
-        #scanID = burp_handler.initiate_crawl_and_scan_against_target(auth_logins=auth_dict,config_name="Audit coverage - thorough")
-        scanID = burp_handler.initiate_scan_against_target(config_name="Audit coverage - thorough")
+        auth_sequence = [
+              {
+                "name": "Burp Suite Navigation Recorder",
+                "version": "1.3.5",
+                "eventType": "start"
+              },
+              {
+                "date": "2022-04-17T14:25:21.473Z",
+                "timestamp": 1650205521473,
+                "eventType": "goto",
+                "url": "http://134.209.146.136/login",
+                "triggersNavigation": true,
+                "fromAddressBar": true
+              },
+              {
+                "date": "2022-04-17T14:25:24.170Z",
+                "timestamp": 1650205524170,
+                "windowInnerWidth": 1200,
+                "windowInnerHeight": 667,
+                "uniqueElementID": "49u1ruv2xf7-xs8focsx21g-kd2lg8qy0y",
+                "tagName": "INPUT",
+                "eventType": "click",
+                "placeholder": "email",
+                "tagNodeIndex": 1,
+                "className": "form-control",
+                "name": "email_id",
+                "id": "username",
+                "textContent": "",
+                "innerHTML": "",
+                "value": "",
+                "elementType": "email",
+                "xPath": "/html/body/div/div/section/form/div/input",
+                "triggersNavigation": false,
+                "triggersWithinDocumentNavigation": false,
+                "characterPos": null
+              },
+              {
+                "date": "2022-04-17T14:25:24.695Z",
+                "timestamp": 1650205524695,
+                "windowInnerWidth": 1200,
+                "windowInnerHeight": 667,
+                "uniqueElementID": "didg5a6k6gi-p3fxn17cez-9vo309byzzs",
+                "tagName": "INPUT",
+                "eventType": "typing",
+                "placeholder": "email",
+                "tagNodeIndex": 1,
+                "className": "form-control",
+                "name": "email_id",
+                "id": "username",
+                "textContent": "",
+                "innerHTML": "",
+                "value": "",
+                "elementType": "email",
+                "xPath": "/html/body/div/div/section/form/div/input",
+                "triggersNavigation": false,
+                "triggersWithinDocumentNavigation": false,
+                "typedValue": "bruce.banner@we45.com"
+              },
+              {
+                "date": "2022-04-17T14:25:30.640Z",
+                "timestamp": 1650205530640,
+                "eventType": "keyboard",
+                "shiftKey": false,
+                "ctrlKey": false,
+                "altKey": false,
+                "key": "Tab",
+                "charCode": 0
+              },
+              {
+                "date": "2022-04-17T14:25:31.011Z",
+                "timestamp": 1650205531011,
+                "windowInnerWidth": 1200,
+                "windowInnerHeight": 667,
+                "uniqueElementID": "cff7jm1qhcm-69tain6k866-i3zn81deem",
+                "tagName": "INPUT",
+                "eventType": "typing",
+                "placeholder": "password",
+                "tagNodeIndex": 2,
+                "className": "form-control",
+                "name": "password",
+                "id": "password",
+                "textContent": "",
+                "innerHTML": "",
+                "value": "",
+                "elementType": "password",
+                "xPath": "/html/body/div/div/section/form/div[2]/input",
+                "triggersNavigation": false,
+                "triggersWithinDocumentNavigation": false,
+                "typedValue": "secdevops"
+              },
+              {
+                "date": "2022-04-17T14:25:32.717Z",
+                "timestamp": 1650205532717,
+                "eventType": "keyboard",
+                "shiftKey": false,
+                "ctrlKey": false,
+                "altKey": false,
+                "key": "Enter",
+                "charCode": 0,
+                "causesFormSubmission": true,
+                "triggersNavigation": true
+              },
+              {
+                "date": "2022-04-17T14:25:32.906Z",
+                "timestamp": 1650205532906,
+                "eventType": "userNavigate",
+                "url": "http://134.209.146.136/dashboard/"
+              }
+        ]
+        scanID = burp_handler.initiate_crawl_and_scan_against_target(auth_logins=auth_sequence,config_name="Audit coverage - thorough")
+        #scanID = burp_handler.initiate_scan_against_target(config_name="Audit coverage - thorough")
         print('Start Active scan. Scan ID equals ' + scanID)
         while (burp_handler.get_burp_scan_status_for_id(scanID).get("scan_status") != "succeeded"):
             print('Active Scan progress: ' + burp_handler.get_burp_scan_status_for_id(scanID).get("scan_status"))
