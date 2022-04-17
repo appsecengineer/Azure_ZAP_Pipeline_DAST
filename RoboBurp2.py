@@ -68,11 +68,11 @@ class RoboBurp2(object):
 #                 request_data['application_logins'] = [{'script':auth_logins,"label":"ctf2","type":"RecordedLogin"}]
 
         if config_name and isinstance(config_name,str):
-            request_data['scan_configurations'] = [{'name': config_name,"type":"NamedConfiguration"}]
+            request_data["scan_configurations"] = [{"name": config_name,"type":"NamedConfiguration"}]
 
-        request_data['urls'] = self.target
+        request_data["urls"] = self.target
         
-        request_data['application_logins'] = [{'script':auth_logins,"label":"ctf2","type":"RecordedLogin"}]
+        request_data["application_logins"] = [{"script":auth_logins,"label":"ctf2","type":"RecordedLogin"}]
         
         print(request_data)
 
