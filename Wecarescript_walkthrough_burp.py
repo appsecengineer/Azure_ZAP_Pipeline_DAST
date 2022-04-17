@@ -22,7 +22,7 @@ def run_burp_active_scan():
     try:
         burp_handler = RoboBurp2(url_list)
         print(url_list)
-        auth_dict = {"username": "bruce.banner@we45.com", "password": "secdevops"}
+        auth_dict = {"username": "betty.ross@we45.com", "password": "secdevops"}
         auth_sequence = '''[
               {
                 "name": "Burp Suite Navigation Recorder",
@@ -79,7 +79,7 @@ def run_burp_active_scan():
                 "xPath": "/html/body/div/div/section/form/div/input",
                 "triggersNavigation": false,
                 "triggersWithinDocumentNavigation": false,
-                "typedValue": "bruce.banner@we45.com"
+                "typedValue": "betty.ross@we45.com"
               },
               {
                 "date": "2022-04-17T14:25:30.640Z",
@@ -276,7 +276,7 @@ def auth(driver,target):
             #url_list.append(str(driver.current_url))
             time.sleep(10)
             driver.find_element_by_xpath('/html/body/div/div/section/form/div[1]/input').clear()
-            driver.find_element_by_xpath('/html/body/div/div/section/form/div[1]/input').send_keys('bruce.banner@we45.com')
+            driver.find_element_by_xpath('/html/body/div/div/section/form/div[1]/input').send_keys('betty.ross@we45.com')
             driver.find_element_by_xpath('/html/body/div/div/section/form/div[2]/input').clear()
             driver.find_element_by_xpath('/html/body/div/div/section/form/div[2]/input').send_keys('secdevops')
             driver.find_element_by_xpath('/html/body/div/div/section/form/div[3]/button').click()
