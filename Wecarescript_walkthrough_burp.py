@@ -23,7 +23,7 @@ def run_burp_active_scan():
         burp_handler = RoboBurp2(url_list)
         print(url_list)
         auth_dict = {"username": "betty.ross@we45.com", "password": "secdevops"}
-        auth_sequence = [
+        auth_sequence = '''[
               {
                 "name": "Burp Suite Navigation Recorder",
                 "version": "1.3.5",
@@ -131,7 +131,7 @@ def run_burp_active_scan():
                 "eventType": "userNavigate",
                 "url": "http://134.209.146.136/dashboard/"
               }
-        ]
+        ]'''
         scanID = burp_handler.initiate_crawl_and_scan_against_target(auth_logins=auth_sequence,config_name="Audit coverage - thorough")
         #scanID = burp_handler.initiate_scan_against_target(config_name="Audit coverage - thorough")
         print('Start Active scan. Scan ID equals ' + scanID)
