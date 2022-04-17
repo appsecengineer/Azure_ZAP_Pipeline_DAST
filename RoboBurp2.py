@@ -72,9 +72,9 @@ class RoboBurp2(object):
 
         request_data["urls"] = self.target
         
-        #request_data["application_logins"] = [{"script":auth_logins,"label":"ctf2","type":"RecordedLogin"}]
-        auth_dict = [{"username": "betty.ross@we45.com", "password": "secdevops","type":"UsernameAndPasswordLogin"}]
-        request_data["application_logins"] = auth_dict
+        request_data["application_logins"] = [{"script":auth_logins,"label":"ctf2","type":"RecordedLogin"}]
+        #auth_dict = [{"username": "betty.ross@we45.com", "password": "secdevops","type":"UsernameAndPasswordLogin"}]
+        #request_data["application_logins"] = auth_dict
         
         print(request_data)
 
