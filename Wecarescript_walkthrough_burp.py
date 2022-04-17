@@ -342,7 +342,6 @@ def auth(driver,target):
             driver.implicitly_wait(5)
             print('[+] ' + driver.current_url)
             url_list.append(str(driver.current_url))
-            url_list = list(dict.fromkeys(url_list))
         except BaseException as e:
             print(e)
     except BaseException as e:
