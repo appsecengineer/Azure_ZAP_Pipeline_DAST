@@ -23,6 +23,7 @@ def run_burp_active_scan():
         burp_handler = RoboBurp2(url_list)
         print(url_list)
         auth_dict = {"username": "bruce.banner@we45.com", "password": "secdevops"}
+        auth_sequence = ""
         #scanID = burp_handler.initiate_crawl_and_scan_against_target(auth_logins=auth_dict,config_name="Audit coverage - thorough")
         scanID = burp_handler.initiate_scan_against_target(config_name="Audit coverage - thorough")
         print('Start Active scan. Scan ID equals ' + scanID)
