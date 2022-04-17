@@ -63,9 +63,9 @@ class RoboBurp2(object):
         :return:
         '''
         request_data = {}
-        if auth_logins and isinstance(auth_logins, dict):
-            if 'username' in auth_logins and 'password' in auth_logins:
-                request_data['application_logins'] = [{'script':auth_logins,"label":"ctf2","type":"RecordedLogin"}]
+#         if auth_logins and isinstance(auth_logins, dict):
+#             if 'username' in auth_logins and 'password' in auth_logins:
+#                 request_data['application_logins'] = [{'script':auth_logins,"label":"ctf2","type":"RecordedLogin"}]
 
         if config_name and isinstance(config_name,str):
             request_data['scan_configurations'] = [{'name': config_name,"type":"NamedConfiguration"}]
