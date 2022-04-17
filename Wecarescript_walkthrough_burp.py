@@ -21,6 +21,7 @@ def run_burp_in_headless_mode():
 def run_burp_active_scan():
     try:
         burp_handler = RoboBurp2(url_list)
+        url_list = list(dict.fromkeys(url_list))
         print(url_list)
         auth_dict = {"username": "betty.ross@we45.com", "password": "secdevops"}
         auth_sequence = '''[
