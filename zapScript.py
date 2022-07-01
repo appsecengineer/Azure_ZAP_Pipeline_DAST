@@ -79,7 +79,7 @@ class OwaspZAP(object):
     def zap_export_report(self, export_file, export_format, report_title, report_author,proxy_host='localhost',proxy_port='8090'):
         
 
-        url = "http://{1}:{0}/JSON/exportreport/action/generate/".format(proxy_host,proxy_port)
+        url = "http://{0}:{1}/JSON/exportreport/action/generate/".format(proxy_host,proxy_port)
         export_path = export_file
         extension = export_format
         report_time = datetime.now().strftime("%I:%M%p on %B %d, %Y")
