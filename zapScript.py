@@ -75,32 +75,18 @@ class OwaspZAP(object):
         f1.write(self.zap.core.htmlreport())
         f1.close()
         print("HTML REPORT GENERATED")
-
-    def zap_export_report(self, export_file, export_format, report_title, report_author,proxy_host='localhost',proxy_port='8090'):
+    
+    def zap_export_xml_report(self, export_file):
+        f1 = open('{0}'.format(export_file), 'w+')
+        f1.write(self.zap.core.xmlreport())
+        f1.close()
+        print("XML REPORT GENERATED")
         
-
-        url = "http://{0}:{1}/JSON/exportreport/action/generate/".format(proxy_host,proxy_port)
-        export_path = export_file
-        extension = export_format
-        report_time = datetime.now().strftime("%I:%M%p on %B %d, %Y")
-        source_info = "{0};{1};ZAP Team;{2};{3};v1;v1;{4}".format(
-            report_title, report_author, report_time, report_time, report_title
-        )
-        alert_severity = "t;t;t;t"
-        alert_details = "t;t;t;t;t;t;t;t;t;t"
-        data = {
-            "absolutePath": export_path,
-            "fileExtension": extension,
-            "sourceDetails": source_info,
-            "alertSeverity": alert_severity,
-            "alertDetails": alert_details,
-        }
-
-        r = requests.post(url, data=data)
-        if r.status_code == 200:
-            pass
-        else:
-            raise Exception("Unable to generate report")
+    def zap_export_json_report(self, export_file):
+        f1 = open('{0}'.format(export_file), 'w+')
+        f1.write(self.zap.core.jsonreport())
+        f1.close()
+        print("JSON REPORT GENERATED")
 
     def zap_shutdown(self):
         self.zap.core.shutdown()
