@@ -7,7 +7,7 @@ jobs:
 - job: start_zap_scan
   dependsOn: start_app
   steps:
-  - script: export TARGET_IP=$(curl -XGET -s http://checkip.amazonaws.com/) && python3 -u Walkthrough.py >> zap_result.txt
+  - script: export TARGET_IP=$(curl -XGET -s http://checkip.amazonaws.com/) && python3 -u Walkthrough.py
   - task: CopyFiles@2
     inputs:
       sourceFolder: '$(Build.SourcesDirectory)'
