@@ -1,0 +1,22 @@
+pool: Default
+jobs:
+- job: start_zap
+  steps:
+  - script: /root/zap/ZAP_2.9.0/zap.sh -daemon -host 0.0.0.0 -port 8090 -config api.disablekey=true
+      
+- job: start_zap_scan
+  steps:
+  - script: export TARGET_IP=$(curl -XGET -s http://checkip.amazonaws.com/)
+  - script: python3 Walkthrough.py
+
+- job: Artifact_Results
+  steps:
+  - task: CopyFiles@2
+    inputs:
+      sourceFolder: '$(Build.SourcesDirectory)'
+      contents: '*.json'
+      targetFolder: $(Build.ArtifactStagingDirectory)
+  - task: PublishBuildArtifacts@1
+    inputs:
+      pathtoPublish: '$(Build.ArtifactStagingDirectory)'
+      artifactName: zap_results
