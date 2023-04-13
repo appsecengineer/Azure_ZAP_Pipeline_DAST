@@ -19,7 +19,7 @@ jobs:
       artifactName: zap_results
       
 - job: stop_app
-  dependsOn: Artifact_Results
+  dependsOn: start_zap_scan
   steps:
   - script: clean-docker || true
   
