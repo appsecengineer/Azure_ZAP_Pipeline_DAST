@@ -9,14 +9,14 @@ jobs:
   steps:
   - script: /root/zap/ZAP_2.9.0/zap.sh -daemon -host 0.0.0.0 -port 8090 -config api.disablekey=true
       
-- job: start_zap
-  dependsOn: start_app
+- job: start_zap_scan
+  dependsOn: start_zap
   steps:
   - script: export TARGET_IP=$(curl -XGET -s http://checkip.amazonaws.com/)
   - script: python3 Walkthrough.py
 
 - job: Artifact_Results
-  dependsOn: start_zap
+  dependsOn: start_zap_scan
   steps:
   - task: CopyFiles@2
     inputs:
