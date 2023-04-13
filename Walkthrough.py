@@ -103,6 +103,9 @@ while int(zap.ascan.status(active_scan_id)) < 100:
 print("[+] ================ Scan Completed =================")
 alerts = zap.core.alerts()
 
+with open("ctf_zap_report.json", "w") as outfile:
+    outfile.write(alerts)
+
 print('_'*125)
 print('|'+' '*48+'Name'+' '*47+'  |'+'  Severity  '+'|'+'  CWE  |')
 print('_'*125)
