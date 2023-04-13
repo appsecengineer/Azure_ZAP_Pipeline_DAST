@@ -26,10 +26,5 @@ jobs:
   dependsOn: Artifact_Results
   steps:
   - script: clean-docker || true
-
-- job: stop_zap
-  dependsOn: stop_app
-  steps:
-  - script: stop-zap || true
   
   
