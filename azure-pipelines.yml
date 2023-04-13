@@ -1,5 +1,9 @@
 pool: Default
 jobs:
+- job: start_app
+  steps:
+  - script: start-wecare
+  
 - job: start_zap
   steps:
   - script: /root/zap/ZAP_2.9.0/zap.sh -daemon -host 0.0.0.0 -port 8090 -config api.disablekey=true
@@ -20,3 +24,13 @@ jobs:
     inputs:
       pathtoPublish: '$(Build.ArtifactStagingDirectory)'
       artifactName: zap_results
+      
+- job: stop_app
+  steps:
+  - script: clean-docker
+
+- job: stop_zap
+  steps:
+  - script: stop-zap
+  
+  
