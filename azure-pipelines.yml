@@ -5,15 +5,18 @@ jobs:
   - script: start-wecare
   
 - job: start_zap
+  dependsOn: start_app
   steps:
   - script: /root/zap/ZAP_2.9.0/zap.sh -daemon -host 0.0.0.0 -port 8090 -config api.disablekey=true
       
-- job: start_zap_scan
+- job: start_zap
+  dependsOn: start_app
   steps:
   - script: export TARGET_IP=$(curl -XGET -s http://checkip.amazonaws.com/)
   - script: python3 Walkthrough.py
 
 - job: Artifact_Results
+  dependsOn: start_zap
   steps:
   - task: CopyFiles@2
     inputs:
@@ -26,10 +29,12 @@ jobs:
       artifactName: zap_results
       
 - job: stop_app
+  dependsOn: Artifact_Results
   steps:
   - script: clean-docker
 
 - job: stop_zap
+  dependsOn: stop_app
   steps:
   - script: stop-zap
   
