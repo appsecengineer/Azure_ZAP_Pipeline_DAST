@@ -7,8 +7,7 @@ jobs:
 - job: start_zap_scan
   dependsOn: start_app
   steps:
-  - script: export TARGET_IP=$(curl -XGET -s http://checkip.amazonaws.com/)
-  - script: python3 Walkthrough.py
+  - script: export TARGET_IP=$(curl -XGET -s http://checkip.amazonaws.com/) && python3 -u Walkthrough.py
 
 - job: Artifact_Results
   dependsOn: start_zap_scan
